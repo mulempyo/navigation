@@ -1,0 +1,3 @@
+[submodule "dwa_planner_ros"]
+	path = dwa_planner_ros
+	url = https://github.com/mulempyo/navigation.git

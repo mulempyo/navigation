@@ -1,0 +1,34 @@
+version: 2
+
+build:
+   os: "ubuntu-20.04"
+   tools:
+      python: "3.10"
+   commands:
+      #
+      # xrst
+      - pip install xrst
+      #
+      # This is only necessary if you need the most recent testing version
+      - pip uninstall -y xrst
+      - pip install --index-url https://test.pypi.org/simple/ xrst
+      #
+      # This command prints the version of xrst that is being used
+      - xrst --version
+      #
+      # build/html
+      # The xsrst html_directory for this configuration is build/html.
+      # Build the default (user_guide) and app (appendix) groups.
+      # Suppress spell warnings because readthdocs uses a different dictionry.
+      - xrst
+         --page_source
+         --html_theme furo
+         --group_list default app
+         --index_page_name user_guide
+         --suppress_spell_warnings
+      #
+      # _readthedocs/html
+      # The directory that Read the Docs uploads when commands is used.
+      - mkdir _readthedocs
+      - rm -r build/html/.doctrees
+      - cp -r build/html _readthedocs/html

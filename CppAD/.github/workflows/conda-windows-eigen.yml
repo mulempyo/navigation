@@ -1,0 +1,58 @@
+name: conda-windows-eigen
+on:
+  push:
+    branches:
+      - master
+      - 'stable/*'
+
+jobs:
+  build:
+    runs-on: windows-2019
+
+    steps:
+    - uses: actions/checkout@v4
+    - uses: conda-incubator/setup-miniconda@v3
+      with:
+        activate-environment: conda_env
+
+    - name: Use conda to install eigen and pkgconfig
+      shell: cmd /C CALL {0}
+      run: |
+        echo conda install --yes eigen pkgconfig
+             conda install --yes eigen pkgconfig
+
+    - name: Create and check Eigen link, check for eigen3.pc
+      shell: cmd /C CALL {0}
+      run: |
+        mklink /d %CONDA_PREFIX%\Library\include\Eigen^
+                  %CONDA_PREFIX%\Library\include\eigen3\Eigen
+        echo dir %CONDA_PREFIX%\Library\include\Eigen\Core
+             dir %CONDA_PREFIX%\Library\include\Eigen\Core
+        echo dir %CONDA_PREFIX%\Library\share\pkgconfig\eigen3.pc
+             dir %CONDA_PREFIX%\Library\share\pkgconfig\eigen3.pc
+
+    - name: Build and test CppAD with Eigen
+      shell: cmd /C CALL {0}
+      run: |
+        echo Use vcvarsall.bat to get proper version of cmake
+        call "%programfiles(x86)%\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
+        echo where camke
+             where cmake
+        echo mkdir build
+             mkdir build
+        echo cd build
+             cd build
+        echo set PKG_CONFIG_PATH=%CONDA_PREFIX%\Library\share\pkgconfig
+             set PKG_CONFIG_PATH=%CONDA_PREFIX%\Library\share\pkgconfig
+        echo run cmake
+        cmake ^
+          -D CMAKE_CXX_COMPILER=cl ^
+          -D CMAKE_C_COMPILER=cl ^
+          -D CMAKE_BUILD_TYPE=release ^
+          -G "NMake Makefiles" ^
+          -D cppad_static_lib=TRUE ^
+          -D cppad_cxx_flags="/MP /EHs /EHc /std:c++17 /Zc:__cplusplus" ^
+          ..
+        REM Build and run tests.
+        echo cmake --build . --target check
+             cmake --build . --target check

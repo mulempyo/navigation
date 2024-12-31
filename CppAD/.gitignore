@@ -1,0 +1,40 @@
+# ----------------------------------------------------------------------------
+# specific files
+#
+#
+# cmake configure files
+/bin/test_one.sh
+/include/cppad/configure.hpp
+#
+# create by bin/test_one.sh
+/test_one.cpp
+/test_one.exe
+/test_one.exe.dSYM/
+#
+# git commit script
+/git_commit.sh
+# ----------------------------------------------------------------------------
+# specific directories
+#
+# buld directories
+/build/
+/build2/
+#
+# for building external packages
+/external/
+#
+# for caching git changes
+/new/
+/new.*/
+# ----------------------------------------------------------------------------
+# specific extensions in top direcotry
+/*.err
+/*.log
+/*.tmp
+# ----------------------------------------------------------------------------
+# vim swap files in any directory
+*.swp
+# ----------------------------------------------------------------------------
+# temp files in any directory
+temp
+temp.*

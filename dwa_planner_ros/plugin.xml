@@ -1,0 +1,7 @@
+<library path="lib/libdwa_planner_ros">
+    <class name="dwa_planner_ros/DWAPlannerROS" type="dwa_planner_ros::DWAPlannerROS" base_class_type="nav_core::BaseLocalPlanner">
+        <description>
+            my own dwa planner
+        </description>
+    </class>
+</library>

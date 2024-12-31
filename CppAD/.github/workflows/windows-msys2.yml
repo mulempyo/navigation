@@ -1,0 +1,35 @@
+name: windows-msys2
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+      - 'stable/*'
+
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: git mingw-w64-x86_64-cc mingw-w64-x86_64-cmake make
+
+      - name: CppAD check
+        run: |
+          #
+          # Create build directory
+          mkdir build
+          pushd build
+          #
+          # configure
+          cmake -G "MSYS Makefiles" -D cppad_static_lib=TRUE ..
+          #
+          # check
+          cmake --build . --target check --parallel 1
