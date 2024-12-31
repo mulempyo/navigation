@@ -1,0 +1,5 @@
+<library path="lib/libirrt_star_planner">
+<class name="irrt_star/IRRTStarPlanner" type="irrt_star::IRRTStarPlanner" base_class_type="nav_core::BaseGlobalPlanner">
+   <description>my own irrt* global planner plugin</description>
+ </class>
+</library>
