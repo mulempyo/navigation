@@ -1,0 +1,8 @@
+<library path="lib/libpure_pursuit_planner">
+    <class name="pure_pursuit_planner/PurePursuitPlanner" type="pure_pursuit_planner::PurePursuitPlanner"
+        base_class_type="nav_core::BaseLocalPlanner">
+        <description>
+            A implementation of a local Regulated pure pursuit (RPP) planner.
+        </description>
+    </class>
+</library>

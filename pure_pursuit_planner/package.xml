@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>pure_pursuit_planner</name>
+  <version>0.0.1</version>
+  <description>The pure_pursuit_planner package</description>
+
+  <!-- À¯Áö°ü¸®ÀÚ Á¤º¸ -->
+  <maintainer email="your_email@example.com">Your Name</maintainer>
+
+  <!-- ¶óÀÌ¼±½º Á¤º¸ -->
+  <license>BSD</license>
+
+  <!-- ºôµå ÀÇÁ¸¼º -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- ÆÐÅ°ÁöÀÇ ·±Å¸ÀÓ ¹× ºôµå ½Ã ÀÇÁ¸¼º -->
+  <depend>roscpp</depend>
+  <depend>costmap_2d</depend>
+  <depend>pluginlib</depend>
+  <depend>nav_core</depend>
+  <depend>tf2_ros</depend>
+  <depend>geometry_msgs</depend>
+
+  <!-- Å×½ºÆ® ÀÇÁ¸¼º -->
+  <test_depend>rostest</test_depend>
+
+  <!-- µ¶¸³ÀûÀ¸·Î »ç¿ëµÉ ¼ö ÀÖ´Â ÆÐÅ°Áö -->
+  <export>
+    <nav_core plugin="${prefix}/pure_pursuit_planner_plugin.xml"/>
+  </export>
+
+</package>
+
